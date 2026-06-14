@@ -31,7 +31,7 @@ def create_posts(post:schemas.Post, db : Session = Depends(get_db), user_id : in
     #new_post = cursor.fetchone()
     #conn.commit()
     
-    new_post = models.Post(owner_id=user_id.id,**post.dict())
+    new_post = models.Post(owner_id=user_id.id,**post.model_dump())
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
